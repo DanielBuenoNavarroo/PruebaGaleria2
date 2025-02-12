@@ -1,4 +1,5 @@
 import AddImages from "@/components/ejercicios/AddImages";
+import Comentarios from "@/components/ejercicios/Comentarios";
 import { Contador } from "@/components/ejercicios/Contador";
 import Formulario from "@/components/ejercicios/Formulario";
 import Selects from "@/components/ejercicios/Selects";
@@ -19,4 +20,5 @@ export const routes: Route[] = [
   { name: "Temporizador", path: "/ejercicio4", component: Temporizador },
   { name: "Contador", path: "/ejercicio5", component: Contador },
   { name: "Formulario", path: "/ejercicio6", component: Formulario },
+  { name: "Comentarios", path: "/ejercicio7", component: Comentarios },
 ];

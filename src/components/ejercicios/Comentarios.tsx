@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -21,6 +22,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 type PropsComentario = {
   addLikes: (id: string) => void;
@@ -41,30 +43,37 @@ const Comentario = ({
 }: ComentarioSchema & PropsComentario) => {
   return (
     <Card className="w-full max-w-screen-sm">
-      <div className="flex border-b p-4">
-        <CardHeader className="p-0 pr-4 flex items-center justify-center border-r">
+      <div className="flex border-b p-2">
+        <CardHeader className="justify-center px-2 py-1 border-r">
           <CardTitle>{nombre}</CardTitle>
+          <CardDescription className="flex flex-row-reverse gap-2 items-center justify-center">
+            <Star
+              className="fill-yellow-400 text-yellow-400 h-4 w-4"
+              strokeWidth={2}
+            />
+            <p className="text-white text-base">{reviews}</p>
+          </CardDescription>
         </CardHeader>
-        <CardContent className="w-full flex py-0 px-4 items-center">
+        <CardContent className="w-full px-2 text-neutral-300 text-sm">
           {contenido}
         </CardContent>
       </div>
       <CardFooter className="items-center justify-center py-2 gap-4">
-        <Button variant={"ghost"} onClick={() => addLikes(id)} className="w-20">
+        <Button variant={"ghost"} onClick={() => addLikes(id)} className="w-14">
           <ThumbsUp />
           {likes}
         </Button>
         <Button
           variant={"ghost"}
           onClick={() => addDislikes(id)}
-          className="w-20"
+          className="w-14"
         >
           <ThumbsDown />
           {dislikes}
         </Button>
         <Button
           variant={"ghost"}
-          className="hover:bg-red-500 "
+          className="hover:bg-red-500 w-14"
           onClick={() => deleteComent(id)}
         >
           <Trash />
@@ -90,7 +99,7 @@ const ComentarioForm = ({
       id: generateId(),
       nombre: "",
       contenido: "",
-      reviews: 0,
+      reviews: 1,
       likes: 0,
       dislikes: 0,
     },
@@ -142,24 +151,24 @@ const ComentarioForm = ({
           control={form.control}
           name="reviews"
           render={({ field, fieldState }) => (
-            <FormItem>
+            <FormItem className="flex justify-center">
               <FormControl>
-                <div className="flex gap-1 justify-center">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Button
-                      key={star}
-                      variant={"ghost"}
-                      className={`cursor-pointer p-1 hover:bg-transparent ${
-                        star <= field.value
-                          ? "text-yellow-500"
-                          : "text-gray-400"
-                      }`}
-                      onClick={() => field.value === star}
-                    >
-                      <Star />
-                    </Button>
+                <RadioGroup
+                  onValueChange={(value) => field.onChange(Number(value))}
+                  defaultValue={field.value.toString()}
+                  className="flex"
+                >
+                  {[...Array(5)].map((_, index) => (
+                    <FormItem className="" key={index}>
+                      <FormControl>
+                        <RadioGroupItem
+                          value={(index + 1).toString()}
+                          selected={field.value > index + 1}
+                        />
+                      </FormControl>
+                    </FormItem>
                   ))}
-                </div>
+                </RadioGroup>
               </FormControl>
               <FormMessage className="text-md text-red-500">
                 {fieldState.error?.message}

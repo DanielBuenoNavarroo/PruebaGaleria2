@@ -96,7 +96,7 @@ const ComentarioForm = ({
     resolver: zodResolver(comentarioSchema),
     mode: "onChange",
     defaultValues: {
-      id: generateId(),
+      id: "",
       nombre: "",
       contenido: "",
       reviews: 1,
@@ -107,7 +107,9 @@ const ComentarioForm = ({
 
   const onSubmit = (data: ComentarioSchema) => {
     setComentarios((comentarios) =>
-      comentarios ? [...comentarios, data] : [data]
+      comentarios
+        ? [...comentarios, { ...data, id: generateId() }]
+        : [{ ...data, id: generateId() }]
     );
     form.reset();
   };

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const comentarioSchema = z.object({
-  id: z.string().min(1, "El id debe ser mayor a 0"),
+  id: z.string(),
   nombre: z
     .string()
     .min(3, "El nombre debe tener al menos 3 caracteres")

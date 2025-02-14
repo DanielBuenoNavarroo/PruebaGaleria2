@@ -1,3 +1,4 @@
+import ShinyText from "@/components/ui/ShinyText";
 import { routes } from "@/lib/routes";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
@@ -35,10 +36,15 @@ const MainLayout = () => {
           </li>
         ))}
       </ul>
-      <div className="w-full h-full">
-        <h1 className="w-full text-3xl font-bold text-center p-4 border-b border-neutral-300/20">
-          {title}
-        </h1>
+      <div className="w-full h-full ">
+        <div className="w-full text-center p-4 border-b border-neutral-300/20">
+          <ShinyText
+            text={title}
+            disabled={false}
+            speed={3}
+            className="m-auto text-4xl font-bold"
+          />
+        </div>
         <Outlet />
       </div>
     </div>

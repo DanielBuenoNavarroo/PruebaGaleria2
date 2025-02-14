@@ -14,7 +14,7 @@ type Route = {
 };
 
 export const routes: Route[] = [
-  { name: "Imagenes", path: "/", component: AddImages },
+  { name: "Imágenes", path: "/", component: AddImages },
   { name: "Cálculo de precios", path: "/ejercicio2", component: Selects },
   { name: "Video", path: "/ejercicio3", component: Video },
   { name: "Temporizador", path: "/ejercicio4", component: Temporizador },

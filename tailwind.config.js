@@ -51,15 +51,37 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
-		keyframes: {
-			shine: {
-				'0%': { 'background-position': '100%' },
-				'100%': { 'background-position': '-100%' },
-			},
-		},
-		animation: {
-			shine: 'shine 5s linear infinite',
-		}
+  		keyframes: {
+  			shine: {
+  				'0%': {
+  					'background-position': '100%'
+  				},
+  				'100%': {
+  					'background-position': '-100%'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			shine: 'shine 5s linear infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

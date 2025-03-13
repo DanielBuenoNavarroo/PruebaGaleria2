@@ -17,8 +17,12 @@ function App() {
       >
         <Routes>
           <Route element={<MainLayout />}>
-            {routes.map((route, i) => (
-              <Route key={i} path={route.path} element={<route.component />} />
+            {routes.map(({ routes: r, path : principalPath }, i) => (
+              <Route key={i} path={principalPath}>
+                {r.map(({ name, path, component: Component }) => (
+                  <Route key={name} path={path} element={<Component />} />
+                ))}
+              </Route>
             ))}
           </Route>
         </Routes>
